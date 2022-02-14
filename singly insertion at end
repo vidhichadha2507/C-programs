@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+void CreateNode(struct node **p, int value)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    ptr->data = value;
+    ptr->next = *p;
+    *p = ptr;
+}
+
+void Disp(struct node *p)
+{
+    struct node *temp = p;
+    while (temp != NULL)
+    {
+        printf("Element is : %d\n", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL");
+}
+
+void InsertAtEnd(struct node **head, int value)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    ptr->data = value;
+    struct node *p = *head;
+    while (p->next != NULL)
+    {
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = NULL;
+}
+
+void InsertAtIndex(struct node **head, int value, int index)
+{
+    int i = 0;
+    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    struct node *p = *head;
+    while (i != index - 1)
+    {
+        p = p->next;
+        i++;
+    }
+    ptr->data = value;
+    ptr->next = p->next;
+    p->next = ptr;
+}
+
+int main()
+{
+    int i = 0, choice, value, index;
+    struct node *head = NULL;
+
+    CreateNode(&head, 12);
+    CreateNode(&head, 13);
+    CreateNode(&head, 14);
+
+    printf("Enter 1.Create a linked list \n2.To create a node \n3.To insert node at the end \n4.Insert node at index \n5.To display linked list \n6.To execute program : ");
+
+    do
+    {
+        printf("\nEnter the choice : ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 2:
+            printf("Enter the data : ");
+            scanf("%d", &value);
+            CreateNode(&head, value);
+            break;
+        case 3:
+            printf("Enter the data : ");
+            scanf("%d", &value);
+            InsertAtEnd(&head, value);
+            break;
+        case 4:
+            printf("Enter the data : ");
+            scanf("%d", &value);
+            printf("Enter the index : ");
+            scanf("%d", &index);
+            InsertAtIndex(&head, value, index);
+            break;
+        case 5:
+            Disp(head);
+            break;
+        case 6:
+            exit(0);
+            break;
+
+        default:
+            break;
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
