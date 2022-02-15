@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+int main()
+{
+    printf("***menu*** \n");
+    printf("***choose 1 for palindrome number*** \n");
+    printf("***choose 2 for armstrong number*** \n");
+    int ch;
+    printf("enter your choice: ");
+    scanf("%d",&ch);
+    if(ch==1)
+    {
+        int reverse=0;
+        int num,a,r;
+        printf("enter any number:");
+        scanf("%d",&num);
+        a=num;
+        while(a>0)
+        {
+            r=a%10;
+            reverse=reverse*10+r;
+            a=a/10;
+        }
+        if (reverse==num)
+        {
+            printf("it is a palindrome number");
+        }
+        else
+        {
+            printf("it is not a palindrome number");
+        }
+    }
+    else if(ch==2)
+    {
+        int sum=0;
+        int num,a,r;
+        printf("enter the 3 digit number:");
+        scanf("%d",&num);
+        a=num;
+        while(a>0)
+        {
+            r=a%10;
+            sum=sum+(r*r*r);
+            a=a/10;
+        }
+        if (sum==num)
+        {
+            printf("it is a armstrong number");
+        }
+        else
+        {
+            printf("it is not a armstrong number");
+        }
+    }
+    else
+    {
+        printf("invalid choice");
+    }
+
+    return 0;
+}
