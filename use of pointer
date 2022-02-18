@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct Books
+{
+    char title[100];
+    char author[100];
+    char subject[100];
+    int Id;
+};
+int main()
+{
+    struct Books *ptr;
+    int i,n;
+    printf("Enter The Numbers Of Books : ");
+    scanf("%d",&n);
+    fflush(stdin);
+    printf("\ndetails of %d c programming books:\n",n);
+    ptr=(struct Books*) malloc(n * sizeof(struct Books));
+    for ( i = 0; i < n; i++)
+    {
+        printf("enter the book %d title:",i+1);
+        gets((ptr+i)->title);
+        printf("enter the book %d author:",i+1);
+        gets((ptr+i)->author);
+        printf("enter the book %d subject:",i+1);
+        gets((ptr+i)->subject);
+        printf("enter the book %d id: ",i+1);
+        scanf("%d",&(ptr+i)->Id);
+        fflush(stdin);
+        printf("\n");
+    }
+    for ( i = 0; i < n; i++)
+    {
+        printf("\nbook %d title : %s\n",i+1,(ptr+i)->title);
+        printf("book %d author : %s\n",i+1,(ptr+i)->author);
+        printf("book %d subject : %s\n",i+1,(ptr+i)->subject);
+        printf("book %d Id : %d\n\n",i+1,(ptr+i)->Id);
+    }
+    return 0;
+}
